@@ -2,6 +2,14 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <Authors>Thiago Barradas</Authors>
+    <Description>Nancy Scaffolding with log, serializer, all structure to work good for me :D</Description>
+    <PackageIconUrl>https://i.imgur.com/FH1Hb1c.png</PackageIconUrl>
+    <PackageProjectUrl>https://github.com/ThiagoBarradas/nancy-scaffolding</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/ThiagoBarradas/nancy-scaffolding</RepositoryUrl>
+    <PackageTags>nancy, scaffolding, structure, log, base module, web api utilities, etc</PackageTags>
+    <PackageLicenseUrl>https://github.com/thiagobarradas/nancy-scaffolding/blob/master/LICENSE</PackageLicenseUrl>
+    <Copyright>Ⓒ Thiago Barradas</Copyright>
   </PropertyGroup>
 
   <ItemGroup>
