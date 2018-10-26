@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "Nancy.Scaffolding.ApiDemo": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    }
+  }
+}
