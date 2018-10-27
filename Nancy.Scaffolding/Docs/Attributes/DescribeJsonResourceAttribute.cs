@@ -9,13 +9,12 @@ namespace Nancy.Scaffolding.Docs.Attributes
         public DescribeJsonResourceAttribute(Type controllerType, string methodName)
             : base(methodName)
         {
-            var methodInfo = controllerType.GetMethod(methodName);
             var controllerName = this.GetControllerName(controllerType);
 
             this.Summary = this.GetSummary(methodName);
             this.Produces = new[] { "application/json" };
             this.Consumes = new[] { "application/json" };
-            this.Tags = Tags = new[] { controllerName };
+            this.Tags = new[] { controllerName };
         }
 
         private string GetControllerName(Type controllerType)

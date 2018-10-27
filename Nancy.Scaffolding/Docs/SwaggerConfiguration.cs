@@ -5,8 +5,6 @@ using Nancy.Swagger.Annotations;
 using Nancy.Swagger.Services;
 using Swagger.ObjectModel;
 using System;
-using System.IO;
-using WebApi.Models.Response;
 
 namespace Nancy.Scaffolding.Docs
 {
@@ -16,12 +14,12 @@ namespace Nancy.Scaffolding.Docs
         {
             if (Api.DocsSettings.Enabled == true)
             {
-                var docsDescription = AppDomain.CurrentDomain.BaseDirectory + "/Docs/DOCS-DESCRIPTION.md";
-
-                if (File.Exists(docsDescription))
-                {
-                    string readme = File.ReadAllText(docsDescription);
-                }
+                //var docsDescription = AppDomain.CurrentDomain.BaseDirectory + "/Docs/DOCS-DESCRIPTION.md";
+                //
+                //if (File.Exists(docsDescription))
+                //{
+                //    string readme = File.ReadAllText(docsDescription);
+                //}
 
                 var contact = new Contact()
                 {

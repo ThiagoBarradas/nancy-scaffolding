@@ -2,6 +2,8 @@
 using Nancy.Bootstrapper;
 using Nancy.TinyIoc;
 using System;
+using System.Collections.Generic;
+using System.Reflection;
 
 namespace Nancy.Scaffolding.Models
 {
@@ -12,6 +14,8 @@ namespace Nancy.Scaffolding.Models
         public int ApiPort { get; set; }
 
         public string EnvironmentVariablesPrefix { get; set; }
+
+        public IEnumerable<Assembly> AutoRegisterAssemblies { get; set; }
 
         public Func<NancyContext, TinyIoCContainer, TinyIoCContainer> RequestContainer { get; set; }
         

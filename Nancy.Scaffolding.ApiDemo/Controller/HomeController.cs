@@ -26,6 +26,7 @@ namespace Nancy.Scaffolding.ApiDemo.Controller
             var request = this.BindFromBody<CreateUserRequest>();
             var query = this.BindFromQuery<CreateUserRequest>();
 
+            this.ValidateRequest(form);
             this.ValidateRequest(request);
             this.ValidateRequest(query);
 

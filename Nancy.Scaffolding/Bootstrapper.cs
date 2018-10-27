@@ -32,12 +32,21 @@ namespace Nancy.Scaffolding
             this.SetupLogger(pipelines, container);
             this.AddRequestKey(pipelines, container);
             this.SetupMapper(container);
+            this.RegisterAssemblies(container);
             Api.ApiBasicConfiguration.Pipelines?.Invoke(pipelines, container);
             SwaggerConfiguration.Register();
             MongoCRUD.RegisterDefaultConventionPack(t => true);
         }
 
-        private void SetupMapper(TinyIoCContainer container)
+        protected void RegisterAssemblies(TinyIoCContainer container)
+        {
+            if (Api.ApiBasicConfiguration.AutoRegisterAssemblies?.Any() == true)
+            {
+                container.AutoRegister(Api.ApiBasicConfiguration.AutoRegisterAssemblies);
+            }
+        }
+
+        protected void SetupMapper(TinyIoCContainer container)
         {
             Mapper.Initialize(config =>
                 Api.ApiBasicConfiguration.Mapper?.Invoke(config, container));
@@ -82,7 +91,7 @@ namespace Nancy.Scaffolding
             }
         }
 
-        private void RegisterJsonSettings(TinyIoCContainer container)
+        protected void RegisterJsonSettings(TinyIoCContainer container)
         {
             JsonSerializer jsonSerializer = null;
             JsonSerializerSettings jsonSerializerSettings = null;
@@ -101,6 +110,8 @@ namespace Nancy.Scaffolding
                     jsonSerializer = JsonUtility.SnakeCaseJsonSerializer;
                     jsonSerializerSettings = JsonUtility.SnakeCaseJsonSerializerSettings;
                     break;
+                default:
+                    break;
             }
 
             BaseModule.JsonSerializerSettings = jsonSerializerSettings;
@@ -108,7 +119,7 @@ namespace Nancy.Scaffolding
             container.Register(jsonSerializerSettings);
         }
 
-        private void RegisterCultureSettings(TinyIoCContainer container)
+        protected void RegisterCultureSettings(TinyIoCContainer container)
         {
             var defaultLanguage = Api.ApiSettings.SupportedCultures.FirstOrDefault();
             var supportedCultures = Api.ApiSettings.SupportedCultures.Select(r => r.ToLowerInvariant().Trim());
@@ -122,7 +133,7 @@ namespace Nancy.Scaffolding
             container.Register(config);
         }
 
-        private void RegisterCurrentCulture(NancyContext context, TinyIoCContainer container)
+        protected void RegisterCurrentCulture(NancyContext context, TinyIoCContainer container)
         {
             var config = container.Resolve<GlobalizationConfiguration>();
 
@@ -147,7 +158,7 @@ namespace Nancy.Scaffolding
             context.Culture = culture;
         }
 
-        private void EnableCors(IPipelines pipelines)
+        protected void EnableCors(IPipelines pipelines)
         {
             pipelines.AfterRequest.AddItemToStartOfPipeline((context) =>
             {
@@ -158,12 +169,12 @@ namespace Nancy.Scaffolding
             });
         }
 
-        private void EnableCSRF(IPipelines pipelines)
+        protected void EnableCSRF(IPipelines pipelines)
         {
             Security.Csrf.Enable(pipelines);
         }
 
-        private void AddRequestKey(IPipelines pipelines, TinyIoCContainer container)
+        protected void AddRequestKey(IPipelines pipelines, TinyIoCContainer container)
         {
             pipelines.BeforeRequest.AddItemToEndOfPipeline((context) =>
             {
@@ -175,9 +186,9 @@ namespace Nancy.Scaffolding
 
                 return null;
             });
-        }    
+        }
 
-        private void SetupLogger(IPipelines pipelines, TinyIoCContainer container)
+        protected void SetupLogger(IPipelines pipelines, TinyIoCContainer container)
         {
             var loggerBuilder = new LoggerBuilder();
 
