@@ -32,35 +32,15 @@ namespace Nancy.Scaffolding
             this.SetupLogger(pipelines, container);
             this.AddRequestKey(pipelines, container);
             this.SetupMapper(container);
-            this.RegisterAssemblies(container);
             Api.ApiBasicConfiguration.Pipelines?.Invoke(pipelines, container);
             SwaggerConfiguration.Register();
             MongoCRUD.RegisterDefaultConventionPack(t => true);
         }
 
-        protected void RegisterAssemblies(TinyIoCContainer container)
-        {
-            if (Api.ApiBasicConfiguration.AutoRegisterAssemblies?.Any() == true)
-            {
-                container.AutoRegister(Api.ApiBasicConfiguration.AutoRegisterAssemblies);
-            }
-        }
-
-        protected void SetupMapper(TinyIoCContainer container)
-        {
-            Mapper.Initialize(config =>
-                Api.ApiBasicConfiguration.Mapper?.Invoke(config, container));
-
-            var mapper = new Mapper(Mapper.Configuration);
-
-            container.Register<IRuntimeMapper>(mapper);
-            container.Register<IMapper>(mapper);
-            GlobalMapper.Mapper = mapper;
-        }
-
         protected override void ConfigureApplicationContainer(TinyIoCContainer container)
         {
             base.ConfigureApplicationContainer(container);
+            this.RegisterAssemblies(container);
 
             container.Register<ICommunicationLogger, CommunicationLogger>();
             container.Register<IStatusCodeHandler, StatusCodeHandler>().AsSingleton();
@@ -90,6 +70,27 @@ namespace Nancy.Scaffolding
                 SwaggerConfiguration.AddConventions(conventions);
             }
         }
+
+        protected void RegisterAssemblies(TinyIoCContainer container)
+        {
+            if (Api.ApiBasicConfiguration.AutoRegisterAssemblies?.Any() == true)
+            {
+                container.AutoRegister(Api.ApiBasicConfiguration.AutoRegisterAssemblies);
+            }
+        }
+
+        protected void SetupMapper(TinyIoCContainer container)
+        {
+            Mapper.Initialize(config =>
+                Api.ApiBasicConfiguration.Mapper?.Invoke(config, container));
+
+            var mapper = new Mapper(Mapper.Configuration);
+
+            container.Register<IRuntimeMapper>(mapper);
+            container.Register<IMapper>(mapper);
+            GlobalMapper.Mapper = mapper;
+        }
+
 
         protected void RegisterJsonSettings(TinyIoCContainer container)
         {
