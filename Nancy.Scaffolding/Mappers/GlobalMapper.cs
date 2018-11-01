@@ -9,14 +9,13 @@ namespace Nancy.Scaffolding.Mappers
     {
         public static IRuntimeMapper Mapper { get; set; }
         
-        public static T Map<T>(object objToMap) where T : class
+        public static TDestination Map<TDestination>(this object objToMap) where TDestination : class
         {
-            return GlobalMapper.Mapper.DefaultContext.Mapper.Map<T>(objToMap);
+            return GlobalMapper.Mapper.DefaultContext.Mapper.Map<TDestination>(objToMap);
         }
 
-        public static TDestination Map<TSource, TDestination>(TSource source, TDestination destination)
+        public static TDestination Map<TSource, TDestination>(this TSource source, TDestination destination)
         {
-            
             return GlobalMapper.Mapper.DefaultContext.Mapper.Map(source, destination);
         }
     }
