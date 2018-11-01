@@ -14,7 +14,7 @@ namespace Nancy.Scaffolding.Mappers
             return GlobalMapper.Mapper.DefaultContext.Mapper.Map<TDestination>(objToMap);
         }
 
-        public static TDestination Map<TSource, TDestination>(this TSource source, TDestination destination)
+        public static TDestination Map<TSource, TDestination>(this TDestination destination, TSource source)
         {
             return GlobalMapper.Mapper.DefaultContext.Mapper.Map(source, destination);
         }
