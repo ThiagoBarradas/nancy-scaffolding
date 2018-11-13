@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using Microsoft.Extensions.Configuration;
-using Mongo.CRUD;
 using Nancy.Bootstrapper;
 using Nancy.Conventions;
 using Nancy.ErrorHandling;
@@ -34,7 +33,7 @@ namespace Nancy.Scaffolding
             this.SetupMapper(container);
             Api.ApiBasicConfiguration.Pipelines?.Invoke(pipelines, container);
             SwaggerConfiguration.Register();
-            MongoCRUD.RegisterDefaultConventionPack(t => true);
+            Api.ApiBasicConfiguration.ApplicationStartup?.Invoke(pipelines, container);
         }
 
         protected override void ConfigureApplicationContainer(TinyIoCContainer container)

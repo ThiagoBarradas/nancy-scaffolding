@@ -23,6 +23,8 @@ namespace Nancy.Scaffolding.Models
 
         public Func<IPipelines, TinyIoCContainer, IPipelines> Pipelines { get; set; }
 
+        public Func<IPipelines, TinyIoCContainer, TinyIoCContainer> ApplicationStartup { get; set; }
+
         public Func<IMapperConfigurationExpression, TinyIoCContainer, IMapperConfigurationExpression> Mapper { get; set; }
     }
 }

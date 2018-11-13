@@ -14,10 +14,10 @@
 
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="7.0.1" />
-    <PackageReference Include="Microsoft.AspNetCore.Owin" Version="2.2.0-preview2-35157" />
-    <PackageReference Include="Microsoft.AspNetCore.Server.Kestrel" Version="2.2.0-preview2-35157" />
-    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="2.2.0-preview2-35157" />
-    <PackageReference Include="Mongo.CRUD" Version="1.0.5" />
+    <PackageReference Include="Microsoft.AspNetCore.Owin" Version="2.2.0-preview3-35497" />
+    <PackageReference Include="Microsoft.AspNetCore.Server.Kestrel" Version="2.2.0-preview3-35497" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="2.2.0-preview3-35497" />
+    <PackageReference Include="Mongo.CRUD" Version="1.0.6" />
     <PackageReference Include="Nancy" Version="2.0.0-clinteastwood" />
     <PackageReference Include="Nancy.Serialization.JsonNet" Version="2.0.0-clinteastwood" />
     <PackageReference Include="Nancy.Serilog.Simple" Version="1.0.9" />
