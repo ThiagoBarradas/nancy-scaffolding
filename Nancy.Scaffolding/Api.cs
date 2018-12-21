@@ -21,6 +21,19 @@ namespace Nancy.Scaffolding
 
         public static IConfigurationRoot ConfigurationRoot { get; set; }
 
+        static Api()
+        {
+            Api.ConfigurationRoot = (new ConfigurationBuilder())
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile($"appsettings.json", optional: true, reloadOnChange: true)
+                .Build();
+
+            Api.ConfigurationRoot.GetSection("ApiSettings").Bind(Api.ApiSettings);
+            Api.ConfigurationRoot.GetSection("LogSettings").Bind(Api.LogSettings);
+            Api.ConfigurationRoot.GetSection("DbSettings").Bind(Api.DbSettings);
+            Api.ConfigurationRoot.GetSection("DocsSettings").Bind(Api.DocsSettings);
+        }
+
         public static void Run(ApiBasicConfiguration apiBasicConfiguration)
         {
             ApiBasicConfiguration = apiBasicConfiguration;
