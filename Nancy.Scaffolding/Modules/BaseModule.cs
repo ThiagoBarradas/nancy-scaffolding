@@ -49,7 +49,7 @@ namespace Nancy.Scaffolding.Modules
 
         public void ValidateRequest<TRequest>(TRequest request) where TRequest : class, new()
         {
-            var validationResult = this.Validate(request);
+            var validationResult = this.Validate(request ?? new TRequest());
 
             if (validationResult.IsValid == false)
             {
