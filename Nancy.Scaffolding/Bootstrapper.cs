@@ -38,6 +38,8 @@ namespace Nancy.Scaffolding
 
         protected override void ConfigureApplicationContainer(TinyIoCContainer container)
         {
+            base.ConfigureApplicationContainer(container);
+
             this.RegisterAssemblies(container);
 
             container.Register<ICommunicationLogger, CommunicationLogger>();
@@ -48,16 +50,15 @@ namespace Nancy.Scaffolding
             this.RegisterCultureSettings(container);
 
             Api.ApiBasicConfiguration.ApplicationContainer?.Invoke(container);
-            base.ConfigureApplicationContainer(container);
         }
 
         protected override void ConfigureRequestContainer(TinyIoCContainer container, NancyContext context)
         {
+            base.ConfigureRequestContainer(container, context);
+
             this.RegisterCurrentCulture(context, container);
 
             Api.ApiBasicConfiguration.RequestContainer?.Invoke(context, container);
-
-            base.ConfigureRequestContainer(container, context);
         }
 
         protected override void ConfigureConventions(NancyConventions conventions)
