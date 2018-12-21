@@ -1,4 +1,4 @@
-using System;
+using Nancy.Testing;
 using Xunit;
 
 namespace Nancy.Scaffolding.Tests
@@ -8,7 +8,8 @@ namespace Nancy.Scaffolding.Tests
         [Fact]
         public void Test1()
         {
-
+            var bootstrapper = new Bootstrapper();
+            var browser = new Browser(bootstrapper);
         }
     }
 }

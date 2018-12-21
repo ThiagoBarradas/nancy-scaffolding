@@ -17,7 +17,7 @@ namespace Nancy.Scaffolding
 
         public static DocsSettings DocsSettings { get; set; } = new DocsSettings();
 
-        public static ApiBasicConfiguration ApiBasicConfiguration { get; set; }
+        public static ApiBasicConfiguration ApiBasicConfiguration { get; set; } = new ApiBasicConfiguration();
 
         public static IConfigurationRoot ConfigurationRoot { get; set; }
 

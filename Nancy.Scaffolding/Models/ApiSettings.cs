@@ -4,6 +4,13 @@ namespace Nancy.Scaffolding.Models
 {
     public class ApiSettings
     {
+        public ApiSettings()
+        {
+            Domain = "DefaultDomain";
+            Application = "DefaultApp";
+            SupportedCultures = new string[] { "pt-BR", "en-US" };
+        }
+
         public string AppUrl { get; set; }
 
         public string PathPrefix { get; set; }
@@ -16,7 +23,7 @@ namespace Nancy.Scaffolding.Models
 
         public JsonSerializerEnum JsonSerializer { get; set; }
 
-        public string[] SupportedCultures { get; set; }
+        public string[] SupportedCultures { get; set; } 
 
         public bool DebugMode { get; set; }
     }
