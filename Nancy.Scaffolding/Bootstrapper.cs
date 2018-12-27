@@ -49,7 +49,7 @@ namespace Nancy.Scaffolding
             this.RegisterJsonSettings(container);
             this.RegisterCultureSettings(container);
 
-            Api.ApiBasicConfiguration.ApplicationContainer?.Invoke(container);
+            Api.ApiBasicConfiguration?.ApplicationContainer?.Invoke(container);
         }
 
         protected override void ConfigureRequestContainer(TinyIoCContainer container, NancyContext context)
@@ -58,14 +58,14 @@ namespace Nancy.Scaffolding
 
             this.RegisterCurrentCulture(context, container);
 
-            Api.ApiBasicConfiguration.RequestContainer?.Invoke(context, container);
+            Api.ApiBasicConfiguration?.RequestContainer?.Invoke(context, container);
         }
 
         protected override void ConfigureConventions(NancyConventions conventions)
         {
             base.ConfigureConventions(conventions);
 
-            if (Api.DocsSettings.Enabled)
+            if (Api.DocsSettings?.Enabled == true)
             {
                 SwaggerConfiguration.AddConventions(conventions);
             }
@@ -73,7 +73,7 @@ namespace Nancy.Scaffolding
 
         protected void RegisterAssemblies(TinyIoCContainer container)
         {
-            if (Api.ApiBasicConfiguration.AutoRegisterAssemblies?.Any() == true)
+            if (Api.ApiBasicConfiguration?.AutoRegisterAssemblies?.Any() == true)
             {
                 container.AutoRegister(Api.ApiBasicConfiguration.AutoRegisterAssemblies);
             }
@@ -81,6 +81,7 @@ namespace Nancy.Scaffolding
 
         protected void SetupMapper(TinyIoCContainer container)
         {
+            Mapper.Reset();
             Mapper.Initialize(config =>
                 Api.ApiBasicConfiguration.Mapper?.Invoke(config, container));
 
@@ -91,13 +92,12 @@ namespace Nancy.Scaffolding
             GlobalMapper.Mapper = mapper;
         }
 
-
         protected void RegisterJsonSettings(TinyIoCContainer container)
         {
             JsonSerializer jsonSerializer = null;
             JsonSerializerSettings jsonSerializerSettings = null;
 
-            switch (Api.ApiSettings.JsonSerializer)
+            switch (Api.ApiSettings?.JsonSerializer)
             {
                 case JsonSerializerEnum.Camelcase:
                     jsonSerializer = JsonUtility.CamelCaseJsonSerializer;
@@ -122,8 +122,13 @@ namespace Nancy.Scaffolding
 
         protected void RegisterCultureSettings(TinyIoCContainer container)
         {
-            var defaultLanguage = Api.ApiSettings.SupportedCultures.FirstOrDefault();
-            var supportedCultures = Api.ApiSettings.SupportedCultures.Select(r => r.ToLowerInvariant().Trim());
+            var defaultLanguage = Api.ApiSettings?.SupportedCultures?.FirstOrDefault() ?? "en-US";
+            var supportedCultures = Api.ApiSettings?.SupportedCultures?.Select(r => r.ToLowerInvariant().Trim());
+
+            if (supportedCultures?.Any() == false)
+            {
+                supportedCultures = new string[] { defaultLanguage };
+            }
 
             GlobalizationConfiguration config = new GlobalizationConfiguration(supportedCultures, defaultLanguage);
 
@@ -194,18 +199,18 @@ namespace Nancy.Scaffolding
             var loggerBuilder = new LoggerBuilder();
 
             Log.Logger = loggerBuilder
-                .UseSuggestedSetting(Api.ApiSettings.Domain, Api.ApiSettings.Application)
-                .SetupSeq(Api.LogSettings.SeqOptions)
-                .SetupSplunk(Api.LogSettings.SplunkOptions)
+                .UseSuggestedSetting(Api.ApiSettings?.Domain, Api.ApiSettings?.Application)
+                .SetupSeq(Api.LogSettings?.SeqOptions)
+                .SetupSplunk(Api.LogSettings?.SplunkOptions)
                 .BuildLogger();
 
             var logger = container.Resolve<ICommunicationLogger>();
 
             logger.NancySerilogConfiguration.InformationTitle =
-                Api.LogSettings.TitlePrefix + CommunicationLogger.DefaultInformationTitle;
+                Api.LogSettings?.TitlePrefix + CommunicationLogger.DefaultInformationTitle;
             logger.NancySerilogConfiguration.ErrorTitle =
-                Api.LogSettings.TitlePrefix + CommunicationLogger.DefaultErrorTitle;
-            logger.NancySerilogConfiguration.Blacklist = Api.LogSettings.JsonBlacklist;
+                Api.LogSettings?.TitlePrefix + CommunicationLogger.DefaultErrorTitle;
+            logger.NancySerilogConfiguration.Blacklist = Api.LogSettings?.JsonBlacklist;
 
             pipelines.AddLogPipelines(container);
         }
