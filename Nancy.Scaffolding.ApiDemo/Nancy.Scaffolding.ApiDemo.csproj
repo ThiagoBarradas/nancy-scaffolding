@@ -6,11 +6,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Mongo.CRUD" Version="1.0.6" />
+    <PackageReference Include="Mongo.CRUD" Version="1.0.9" />
     <PackageReference Include="Nancy" Version="2.0.0-clinteastwood" />
     <PackageReference Include="Nancy.Serilog.Simple" Version="1.0.9" />
     <PackageReference Include="Nancy.Validation.FluentValidation" Version="2.0.0-clinteastwood" />
-    <PackageReference Include="RestSharp.Serilog.Auto" Version="1.0.21" />
+    <PackageReference Include="RestSharp.Serilog.Auto" Version="1.0.22" />
     <PackageReference Include="Serilog.Builder" Version="1.0.4" />
   </ItemGroup>
 

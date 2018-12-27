@@ -14,6 +14,7 @@ using Nancy.Serilog.Simple.Extensions;
 using Nancy.TinyIoc;
 using Newtonsoft.Json;
 using PackUtils;
+using RestSharp.Serilog.Auto;
 using Serilog;
 using Serilog.Builder;
 using System;
@@ -45,6 +46,7 @@ namespace Nancy.Scaffolding
             container.Register<ICommunicationLogger, CommunicationLogger>();
             container.Register<IStatusCodeHandler, StatusCodeHandler>().AsSingleton();
             container.Register<IConfigurationRoot>(Api.ConfigurationRoot);
+            container.Register<IRestClientFactory, RestClientFactory>();
 
             this.RegisterJsonSettings(container);
             this.RegisterCultureSettings(container);
