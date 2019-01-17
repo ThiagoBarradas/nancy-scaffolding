@@ -45,15 +45,8 @@ namespace Nancy.Scaffolding.ApiDemo
         }
     }
 
-    // como fazer upload de imagens?
-    // como retornar imagens?
-
-    // automapper
-    // testar : por __ environment
-    // documentação swagger
-
-
-
+    // image upload?
+    // get image??
 
     // rabbit ??
     // eventsourcing
@@ -66,13 +59,4 @@ namespace Nancy.Scaffolding.ApiDemo
     // image API
     // authorize app DLL
     // authorize user API / DLL
-
-    // DONE
-    // json serializer nancy
-
-    // mongocrud
-    // pagedlist-netcore
-    // restasharp-autolog
-    // i18n with resources
-    // fluent validation
 }

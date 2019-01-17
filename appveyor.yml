@@ -36,14 +36,6 @@ artifacts:
     name: Nancy.Scaffolding.dll
   - path: Nancy.Scaffolding\bin\Release\Nancy.Scaffolding.%version%.nupkg
     name: Nancy.Scaffolding.%version%.nupkg
-  - path: Nancy.Scaffolding\bin\Release\netstandard2.0\Docs\Assets\banner.png
-    name: Docs\Assets\banner.png
-  - path: Nancy.Scaffolding\bin\Release\netstandard2.0\Docs\Assets\icon.png
-    name: Docs\Assets\icon.png
-  - path: Nancy.Scaffolding\bin\Release\netstandard2.0\Docs\Redoc\redoc.js
-    name: Docs\AssetsRedoc\redoc.js
-  - path: Nancy.Scaffolding\bin\Release\netstandard2.0\Docs\Redoc\index.html
-    name: Docs\AssetsRedoc\index.html
 
 deploy:
   provider: NuGet

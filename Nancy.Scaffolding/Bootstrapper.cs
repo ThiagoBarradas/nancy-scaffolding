@@ -33,7 +33,7 @@ namespace Nancy.Scaffolding
             this.AddRequestKey(pipelines, container);
             this.SetupMapper(container);
             Api.ApiBasicConfiguration.Pipelines?.Invoke(pipelines, container);
-            SwaggerConfiguration.Register();
+            SwaggerConfiguration.Register(container.Resolve<JsonSerializerSettings>());
             Api.ApiBasicConfiguration.ApplicationStartup?.Invoke(pipelines, container);
         }
 
@@ -118,6 +118,7 @@ namespace Nancy.Scaffolding
             }
 
             BaseModule.JsonSerializerSettings = jsonSerializerSettings;
+
             container.Register(jsonSerializer);
             container.Register(jsonSerializerSettings);
         }

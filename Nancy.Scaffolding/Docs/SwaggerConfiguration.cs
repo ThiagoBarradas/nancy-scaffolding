@@ -3,6 +3,7 @@ using Nancy.Scaffolding.Modules;
 using Nancy.Swagger;
 using Nancy.Swagger.Annotations;
 using Nancy.Swagger.Services;
+using Newtonsoft.Json;
 using Swagger.ObjectModel;
 using System;
 
@@ -10,7 +11,7 @@ namespace Nancy.Scaffolding.Docs
 {
     public class SwaggerConfiguration
     {
-        public static void Register()
+        public static void Register(JsonSerializerSettings jsonSerializerSettings)
         {
             if (Api.DocsSettings.Enabled == true)
             {
@@ -29,6 +30,7 @@ namespace Nancy.Scaffolding.Docs
                 };
 
                 SwaggerConfig.ResourceListingPath = BaseModule.GetModulePath();
+                SwaggerConfig.JsonSerializerSettings = jsonSerializerSettings;
                 SwaggerMetadataProvider.SetInfo(Api.DocsSettings.Title, Api.ApiSettings.Version, Api.DocsSettings.Description, contact, Api.DocsSettings.TermsOfService);
                 SwaggerAnnotationsConfig.ShowOnlyAnnotatedRoutes = true;
                 SwaggerTypeMapping.AddTypeMapping(typeof(Guid), typeof(string));

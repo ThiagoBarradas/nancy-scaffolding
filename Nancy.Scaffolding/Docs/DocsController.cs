@@ -1,5 +1,5 @@
-﻿using Nancy.Scaffolding.Modules;
-using System.IO;
+﻿using Nancy.Scaffolding.Docs.Redoc;
+using Nancy.Scaffolding.Modules;
 
 namespace Nancy.Scaffolding.Docs
 {
@@ -15,9 +15,7 @@ namespace Nancy.Scaffolding.Docs
 
         public object Docs()
         {
-
-
-            var content = File.ReadAllText(System.AppDomain.CurrentDomain.BaseDirectory + "/Docs/Redoc/index.html");
+            var content = RedocContent.GetHtml();
             content = content.Replace("{title}", Api.ApiSettings.Application);
             content = content.Replace("{version}", Api.ApiSettings.Version);
 
