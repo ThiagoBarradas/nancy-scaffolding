@@ -15,9 +15,10 @@ namespace Nancy.Scaffolding.ApiDemo.Controller
         }
 
         [DescribeJsonResource(typeof(HomeController), nameof(CreateUser))]
-        [PathContent("id", typeof(int))]
+        [PathContent("id")]
         [QueryContent("page", typeof(int))]
         [BodyContent(typeof(CreateUserRequest))]
+        [HeaderContent("Authorization")]
         [SwaggerResponse(HttpStatusCode.OK, Model = typeof(GetUserResponse))]
         [SwaggerResponse(HttpStatusCode.BadRequest, Model = typeof(ErrorsResponse))]
         public object CreateUser()

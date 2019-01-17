@@ -16,9 +16,14 @@ namespace Nancy.Scaffolding.Docs.Attributes
 
     public class QueryContentAttribute : RouteParamAttribute
     {
-        public QueryContentAttribute(string name, Type modelType)
+        public QueryContentAttribute(string name, Type modelType = null)
             : base(ParameterIn.Query)
         {
+            if (modelType == null)
+            {
+                modelType = typeof(string);
+            }
+
             this.ParamType = modelType;
             this.Name = name;
         }
@@ -26,9 +31,29 @@ namespace Nancy.Scaffolding.Docs.Attributes
 
     public class PathContentAttribute : RouteParamAttribute
     {
-        public PathContentAttribute(string name, Type modelType)
+        public PathContentAttribute(string name, Type modelType = null)
             : base(ParameterIn.Path)
         {
+            if (modelType == null)
+            {
+                modelType = typeof(string);
+            }
+            
+            this.ParamType = modelType;
+            this.Name = name;
+        }
+    }
+
+    public class HeaderContentAttribute : RouteParamAttribute
+    {
+        public HeaderContentAttribute(string name, Type modelType = null)
+            : base(ParameterIn.Header)
+        {
+            if (modelType == null)
+            {
+                modelType = typeof(string);
+            }
+
             this.ParamType = modelType;
             this.Name = name;
         }
