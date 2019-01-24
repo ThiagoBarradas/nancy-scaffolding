@@ -20,7 +20,7 @@ namespace Nancy.Scaffolding.Modules
 
         public object CreateJsonResponse(ApiResponse response)
         {
-            HttpStatusCode statusCode = response.StatusCode.ConvertToEnum<HttpStatusCode>();
+            HttpStatusCode statusCode = (HttpStatusCode) response.StatusCode;
             Response nancyResponse = Response.AsJson(response.Content, statusCode);
 
             if (response.Headers != null)
