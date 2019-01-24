@@ -17,15 +17,15 @@
     <PackageReference Include="Microsoft.AspNetCore.Owin" Version="2.2.0-preview3-35497" />
     <PackageReference Include="Microsoft.AspNetCore.Server.Kestrel" Version="2.2.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="2.2.0-preview3-35497" />
-    <PackageReference Include="Mongo.CRUD" Version="1.0.9" />
+    <PackageReference Include="Mongo.CRUD" Version="1.0.10" />
     <PackageReference Include="Nancy" Version="2.0.0-clinteastwood" />
     <PackageReference Include="Nancy.Serialization.JsonNet" Version="2.0.0-clinteastwood" />
     <PackageReference Include="Nancy.Serilog.Simple" Version="1.0.9" />
-    <PackageReference Include="Nancy.Swagger.JsonNET" Version="1.0.11-alpha" />
-    <PackageReference Include="Nancy.Swagger.Annotations.JsonNET" Version="1.0.11-alpha" />
-	<PackageReference Include="Swagger.ObjectModel.JsonNET" Version="1.0.11-alpha" />
+    <PackageReference Include="Nancy.Swagger.JsonNET" Version="1.0.15-alpha" />
+    <PackageReference Include="Nancy.Swagger.Annotations.JsonNET" Version="1.0.15-alpha" />
+	<PackageReference Include="Swagger.ObjectModel.JsonNET" Version="1.0.15-alpha" />
     <PackageReference Include="Nancy.Validation.FluentValidation" Version="2.0.0-clinteastwood" />
-    <PackageReference Include="PackUtils" Version="1.0.26" />
+    <PackageReference Include="PackUtils" Version="1.0.28" />
     <PackageReference Include="PagedList.NetCore" Version="1.0.6" />
     <PackageReference Include="RestSharp.Serilog.Auto" Version="1.0.22" />
     <PackageReference Include="Serilog.Builder" Version="1.0.4" />
