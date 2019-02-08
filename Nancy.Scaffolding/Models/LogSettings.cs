@@ -1,4 +1,5 @@
 ﻿using Serilog.Builder.Models;
+using System.Collections.Generic;
 
 namespace Nancy.Scaffolding.Models
 {
@@ -14,6 +15,11 @@ namespace Nancy.Scaffolding.Models
 
         public SplunkOptions SplunkOptions { get; set; } = new SplunkOptions();
 
-        public GoogleCloudLoggingOptions GoogleCloudLoggingOptions { get; set; } = new GoogleCloudLoggingOptions();
+        public GoogleCloudLoggingOptions GoogleCloudLoggingOptions { get; set; } 
+            = new GoogleCloudLoggingOptions()
+            {
+                //Labels = new Dictionary<string, string>(),
+                //ResourceLabels = new Dictionary<string, string>()
+            };
     }
 }
