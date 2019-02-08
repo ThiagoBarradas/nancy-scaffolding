@@ -18,6 +18,7 @@ using RestSharp.Serilog.Auto;
 using Serilog;
 using Serilog.Builder;
 using System;
+using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
 
@@ -221,7 +222,29 @@ namespace Nancy.Scaffolding
                 Api.LogSettings?.TitlePrefix + CommunicationLogger.DefaultErrorTitle;
             logger.NancySerilogConfiguration.Blacklist = Api.LogSettings?.JsonBlacklist;
 
+            LogDebugging.SerilogDebug.Setup(Api.LogSettings?.DebugEnabled ?? false);
+
             pipelines.AddLogPipelines(container);
+        }
+    }
+}
+
+namespace LogDebugging
+{
+    public static class SerilogDebug
+    {
+        public static void Setup(bool enabled)
+        {
+            if (enabled)
+            {
+                Serilog.Debugging.SelfLog.Enable(msg =>
+                {
+                    Console.WriteLine("----------- Serilog Debug:");
+                    Console.WriteLine(msg);
+                    Console.WriteLine("--------------------------");
+                    Debug.WriteLine(msg);
+                });
+            }
         }
     }
 }

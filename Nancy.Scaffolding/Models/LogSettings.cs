@@ -7,6 +7,8 @@ namespace Nancy.Scaffolding.Models
         public string TitlePrefix { get; set; }
 
         public string[] JsonBlacklist { get; set; }
+        
+        public bool DebugEnabled { get; set; }
 
         public SeqOptions SeqOptions { get; set; } = new SeqOptions();
 
