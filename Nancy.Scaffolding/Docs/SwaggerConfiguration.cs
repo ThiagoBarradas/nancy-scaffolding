@@ -1,5 +1,4 @@
-﻿using Nancy.Conventions;
-using Nancy.Scaffolding.Modules;
+﻿using Nancy.Scaffolding.Modules;
 using Nancy.Swagger;
 using Nancy.Swagger.Annotations;
 using Nancy.Swagger.Services;
@@ -39,19 +38,6 @@ namespace Nancy.Scaffolding.Docs
                 SwaggerAnnotationsConfig.ShowOnlyAnnotatedRoutes = true;
                 SwaggerTypeMapping.AddTypeMapping(typeof(Guid), typeof(string));
             }
-        }
-
-        public static void AddConventions(NancyConventions conventions)
-        {
-            var pathPrefix = BaseModule.GetModulePath();
-
-            conventions.StaticContentsConventions.Add(
-                StaticContentConventionBuilder.AddDirectory(pathPrefix + "/Docs/Assets", @"Docs/Assets")
-            );
-
-            conventions.StaticContentsConventions.Add(
-                StaticContentConventionBuilder.AddDirectory(pathPrefix + "/Docs/Redoc", @"Docs/Redoc")
-            );
         }
     }
 }

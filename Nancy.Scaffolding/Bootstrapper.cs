@@ -72,11 +72,6 @@ namespace Nancy.Scaffolding
         protected override void ConfigureConventions(NancyConventions conventions)
         {
             base.ConfigureConventions(conventions);
-
-            if (Api.DocsSettings?.Enabled == true)
-            {
-                SwaggerConfiguration.AddConventions(conventions);
-            }
         }
 
         protected void RegisterAssemblies(TinyIoCContainer container)
