@@ -43,10 +43,10 @@ namespace Nancy.Scaffolding
 
             this.RegisterAssemblies(container);
 
-            container.Register(Api.ApiSettings).AsSingleton();
-            container.Register(Api.LogSettings).AsSingleton();
-            container.Register(Api.DbSettings).AsSingleton();
-            container.Register(Api.DocsSettings).AsSingleton();
+            container.Register(Api.ApiSettings);
+            container.Register(Api.LogSettings);
+            container.Register(Api.DbSettings);
+            container.Register(Api.DocsSettings);
             
             container.Register<ICommunicationLogger, CommunicationLogger>();
             container.Register<IStatusCodeHandler, StatusCodeHandler>().AsSingleton();
