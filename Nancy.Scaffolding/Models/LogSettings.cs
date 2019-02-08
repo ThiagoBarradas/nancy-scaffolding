@@ -11,5 +11,7 @@ namespace Nancy.Scaffolding.Models
         public SeqOptions SeqOptions { get; set; } = new SeqOptions();
 
         public SplunkOptions SplunkOptions { get; set; } = new SplunkOptions();
+
+        public GoogleCloudLoggingOptions GoogleCloudLoggingOptions { get; set; } = new GoogleCloudLoggingOptions();
     }
 }

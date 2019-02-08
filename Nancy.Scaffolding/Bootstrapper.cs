@@ -43,6 +43,11 @@ namespace Nancy.Scaffolding
 
             this.RegisterAssemblies(container);
 
+            container.Register(Api.ApiSettings).AsSingleton();
+            container.Register(Api.LogSettings).AsSingleton();
+            container.Register(Api.DbSettings).AsSingleton();
+            container.Register(Api.DocsSettings).AsSingleton();
+            
             container.Register<ICommunicationLogger, CommunicationLogger>();
             container.Register<IStatusCodeHandler, StatusCodeHandler>().AsSingleton();
             container.Register<IConfigurationRoot>(Api.ConfigurationRoot);
@@ -205,6 +210,7 @@ namespace Nancy.Scaffolding
                 .UseSuggestedSetting(Api.ApiSettings?.Domain, Api.ApiSettings?.Application)
                 .SetupSeq(Api.LogSettings?.SeqOptions)
                 .SetupSplunk(Api.LogSettings?.SplunkOptions)
+                .SetupGoogleCloudLogging(Api.LogSettings?.GoogleCloudLoggingOptions)
                 .BuildLogger();
 
             var logger = container.Resolve<ICommunicationLogger>();

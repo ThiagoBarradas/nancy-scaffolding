@@ -22,6 +22,10 @@ namespace Nancy.Scaffolding.Docs
                 //    string readme = File.ReadAllText(docsDescription);
                 //}
 
+                var version = (string.IsNullOrWhiteSpace(Api.ApiSettings.Version)) 
+                    ? "v1" 
+                    : Api.ApiSettings.Version;
+
                 var contact = new Contact()
                 {
                     EmailAddress = Api.DocsSettings.AuthorEmail,
@@ -31,7 +35,7 @@ namespace Nancy.Scaffolding.Docs
 
                 SwaggerConfig.ResourceListingPath = BaseModule.GetModulePath();
                 SwaggerConfig.JsonSerializerSettings = jsonSerializerSettings;
-                SwaggerMetadataProvider.SetInfo(Api.DocsSettings.Title, Api.ApiSettings.Version, Api.DocsSettings.Description, contact, Api.DocsSettings.TermsOfService);
+                SwaggerMetadataProvider.SetInfo(Api.DocsSettings.Title, version, Api.DocsSettings.Description, contact, Api.DocsSettings.TermsOfService);
                 SwaggerAnnotationsConfig.ShowOnlyAnnotatedRoutes = true;
                 SwaggerTypeMapping.AddTypeMapping(typeof(Guid), typeof(string));
             }
