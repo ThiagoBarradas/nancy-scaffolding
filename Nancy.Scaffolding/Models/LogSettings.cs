@@ -18,8 +18,8 @@ namespace Nancy.Scaffolding.Models
         public GoogleCloudLoggingOptions GoogleCloudLoggingOptions { get; set; } 
             = new GoogleCloudLoggingOptions()
             {
-                //Labels = new Dictionary<string, string>(),
-                //ResourceLabels = new Dictionary<string, string>()
+                Labels = new Dictionary<string, string>(),
+                ResourceLabels = new Dictionary<string, string>()
             };
     }
 }

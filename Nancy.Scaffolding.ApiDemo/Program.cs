@@ -21,7 +21,6 @@ namespace Nancy.Scaffolding.ApiDemo
             };
 
             Api.Run(config);
-
         }
 
         public static TinyIoCContainer RegisterApplicationContainer(TinyIoCContainer container)
