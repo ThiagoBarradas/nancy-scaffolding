@@ -20,7 +20,7 @@
     <PackageReference Include="Mongo.CRUD" Version="1.0.10" />
     <PackageReference Include="Nancy" Version="2.0.0-clinteastwood" />
     <PackageReference Include="Nancy.Serialization.JsonNet" Version="2.0.0-clinteastwood" />
-    <PackageReference Include="Nancy.Serilog.Simple" Version="1.0.11" />
+    <PackageReference Include="Nancy.Serilog.Simple" Version="1.0.13" />
     <PackageReference Include="Nancy.Swagger.JsonNET" Version="1.0.15-alpha" />
     <PackageReference Include="Nancy.Swagger.Annotations.JsonNET" Version="1.0.15-alpha" />
 	<PackageReference Include="Swagger.ObjectModel.JsonNET" Version="1.0.15-alpha" />
@@ -28,8 +28,8 @@
     <PackageReference Include="PackUtils" Version="1.0.28" />
     <PackageReference Include="PagedList.NetCore" Version="1.0.6" />
     <PackageReference Include="RestSharp.Serilog.Auto" Version="1.0.22" />
-    <PackageReference Include="Serilog.Builder" Version="1.0.17" />
-    <PackageReference Include="WebApi.Models" Version="1.0.5" />
+    <PackageReference Include="Serilog.Builder" Version="1.0.18" />
+    <PackageReference Include="WebApi.Models" Version="1.0.8" />
   </ItemGroup>
 
 </Project>
