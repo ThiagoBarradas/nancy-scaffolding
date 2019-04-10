@@ -25,14 +25,17 @@ namespace Nancy.Scaffolding
 {
     public class Bootstrapper : DefaultNancyBootstrapper
     {
+        private IPipelines Pipelines { get; set; }
+
         protected override void ApplicationStartup(TinyIoCContainer container, IPipelines pipelines)
         {
+            this.Pipelines = pipelines;
             this.EnableCors(pipelines);
             this.EnableCSRF(pipelines);
             this.SetupLogger(pipelines, container);
             this.AddRequestKey(pipelines, container);
             this.SetupMapper(container);
-            Api.ApiBasicConfiguration.Pipelines?.Invoke(pipelines, container);
+            Api.ApiBasicConfiguration.ApplicationPipelines?.Invoke(pipelines, container);
             SwaggerConfiguration.Register(container.Resolve<JsonSerializerSettings>());
             Api.ApiBasicConfiguration.ApplicationStartup?.Invoke(pipelines, container);
         }
@@ -66,6 +69,7 @@ namespace Nancy.Scaffolding
             this.RegisterCurrentCulture(context, container);
 
             Api.ApiBasicConfiguration?.RequestContainer?.Invoke(context, container);
+            Api.ApiBasicConfiguration.RequestPipelines?.Invoke(this.Pipelines, container);
         }
 
         protected override void ConfigureConventions(NancyConventions conventions)

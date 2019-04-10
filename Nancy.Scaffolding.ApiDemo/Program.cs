@@ -13,7 +13,7 @@ namespace Nancy.Scaffolding.ApiDemo
             {
                 ApplicationContainer = RegisterApplicationContainer,
                 RequestContainer = RegisterRequestContainer,
-                Pipelines = ConfigurePipelines,
+                ApplicationPipelines = ConfigurePipelines,
                 Mapper = ConfigureMapper,
                 ApiName = "My Apppp",
                 ApiPort = 5855,
