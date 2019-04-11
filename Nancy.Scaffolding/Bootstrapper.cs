@@ -27,6 +27,10 @@ namespace Nancy.Scaffolding
     {
         private IPipelines Pipelines { get; set; }
 
+        private TinyIoCContainer ApplicationContainers { get; set; }
+
+        private TinyIoCContainer RequestContainers { get; set; }
+
         protected override void ApplicationStartup(TinyIoCContainer container, IPipelines pipelines)
         {
             this.Pipelines = pipelines;
@@ -34,8 +38,9 @@ namespace Nancy.Scaffolding
             this.EnableCSRF(pipelines);
             this.SetupLogger(pipelines, container);
             this.AddRequestKey(pipelines, container);
+            this.AddAccountId(pipelines, container);
             this.SetupMapper(container);
-            Api.ApiBasicConfiguration.ApplicationPipelines?.Invoke(pipelines, container);
+            Api.ApiBasicConfiguration.Pipelines?.Invoke(pipelines, container);
             SwaggerConfiguration.Register(container.Resolve<JsonSerializerSettings>());
             Api.ApiBasicConfiguration.ApplicationStartup?.Invoke(pipelines, container);
         }
@@ -69,7 +74,26 @@ namespace Nancy.Scaffolding
             this.RegisterCurrentCulture(context, container);
 
             Api.ApiBasicConfiguration?.RequestContainer?.Invoke(context, container);
-            Api.ApiBasicConfiguration.RequestPipelines?.Invoke(this.Pipelines, container);
+        }
+
+        protected void AddAccountId(IPipelines pipelines, TinyIoCContainer container)
+        {
+            pipelines.BeforeRequest.AddItemToStartOfPipeline((context) =>
+            {
+                container.Register(new AccountId());
+                return null;
+            });
+
+            pipelines.AfterRequest.AddItemToStartOfPipeline((context) =>
+            {
+                context.Items["AccountId"] = container.Resolve<AccountId>().Value;
+            });
+
+            pipelines.OnError.AddItemToStartOfPipeline((context, exception) =>
+            {
+                context.Items["AccountId"] = container.Resolve<AccountId>().Value;
+                return null;
+            });
         }
 
         protected override void ConfigureConventions(NancyConventions conventions)

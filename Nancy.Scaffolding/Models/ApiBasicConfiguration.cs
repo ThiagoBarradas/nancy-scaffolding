@@ -21,9 +21,7 @@ namespace Nancy.Scaffolding.Models
         
         public Func<TinyIoCContainer, TinyIoCContainer> ApplicationContainer { get; set; }
 
-        public Func<IPipelines, TinyIoCContainer, IPipelines> ApplicationPipelines { get; set; }
-
-        public Func<IPipelines, TinyIoCContainer, IPipelines> RequestPipelines { get; set; }
+        public Func<IPipelines, TinyIoCContainer, IPipelines> Pipelines { get; set; }
 
         public Func<IPipelines, TinyIoCContainer, TinyIoCContainer> ApplicationStartup { get; set; }
 
