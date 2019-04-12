@@ -27,10 +27,6 @@ namespace Nancy.Scaffolding
     {
         private IPipelines Pipelines { get; set; }
 
-        private TinyIoCContainer ApplicationContainers { get; set; }
-
-        private TinyIoCContainer RequestContainers { get; set; }
-
         protected override void ApplicationStartup(TinyIoCContainer container, IPipelines pipelines)
         {
             this.Pipelines = pipelines;
@@ -71,6 +67,7 @@ namespace Nancy.Scaffolding
         {
             base.ConfigureRequestContainer(container, context);
 
+            container.Register<AccountId>().AsSingleton();
             this.RegisterCurrentCulture(context, container);
 
             Api.ApiBasicConfiguration?.RequestContainer?.Invoke(context, container);
@@ -78,12 +75,6 @@ namespace Nancy.Scaffolding
 
         protected void AddAccountId(IPipelines pipelines, TinyIoCContainer container)
         {
-            pipelines.BeforeRequest.AddItemToStartOfPipeline((context) =>
-            {
-                container.Register(new AccountId());
-                return null;
-            });
-
             pipelines.AfterRequest.AddItemToStartOfPipeline((context) =>
             {
                 context.Items["AccountId"] = container.Resolve<AccountId>().Value;
