@@ -67,7 +67,7 @@ namespace Nancy.Scaffolding
         {
             base.ConfigureRequestContainer(container, context);
 
-            container.Register<AccountId>().AsSingleton();
+            container.Register(new AccountId());
             this.RegisterCurrentCulture(context, container);
 
             Api.ApiBasicConfiguration?.RequestContainer?.Invoke(context, container);
