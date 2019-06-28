@@ -126,6 +126,8 @@ App Settings
 
 ```
 PM> Install-Package Nancy.Scaffolding
+PM> Install-Package Nancy -Version 2.0.0-clinteastwood
+PM> Install-Package Nancy.Serialization.JsonNet -Version 2.0.0-clinteastwood
 ```
 
 ## How can I contribute?
