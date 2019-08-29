@@ -5,7 +5,6 @@ using Nancy.Scaffolding.Modules;
 using Nancy.Serilog.Simple;
 using Nancy.Swagger.Annotations.Attributes;
 using System;
-using System.Threading;
 using WebApi.Models.Response;
 
 namespace Nancy.Scaffolding.ApiDemo.Controller
@@ -20,7 +19,7 @@ namespace Nancy.Scaffolding.ApiDemo.Controller
         {
             this.Test = test;
             this.AdditionalInfo = additionalInfo;
-            this.Get("users/{id}", args => this.CreateUser(), name: nameof(CreateUser));
+            this.Post("users/{id}", args => this.CreateUser(), name: nameof(CreateUser));
         }
 
         [DescribeJsonResource(typeof(HomeController), nameof(CreateUser))]
@@ -36,22 +35,12 @@ namespace Nancy.Scaffolding.ApiDemo.Controller
             var request = this.BindFromBody<CreateUserRequest>();
             var query = this.BindFromQuery<CreateUserRequest>();
 
-            this.AdditionalInfo.Data.Add("AccountId", query.FirstName);
-            this.AdditionalInfo.Data.Add("MerchantId", query.LastName);
+            this.AdditionalInfo.Data.Add("AccountId", "Test");
+            this.AdditionalInfo.Data.Add("MerchantId", "Test2");
 
-            while (query.FirstName == "acc_123")
-            {
-                Thread.Sleep(1000);
-                Console.WriteLine("Query {0}", query.FirstName);
-                Console.WriteLine("AccountId {0}", this.AdditionalInfo.Data["AccountId"]);
-                Console.WriteLine("MerchantId {0}", this.AdditionalInfo.Data["MerchantId"]);
-            }
-
-            Test.Testing();
-
-            //this.ValidateRequest(form);
-            //this.ValidateRequest(request);
-            //this.ValidateRequest(query);
+            this.ValidateRequest(form);
+            this.ValidateRequest(request);
+            this.ValidateRequest(query);
 
             var response = new ApiResponse { StatusCode = System.Net.HttpStatusCode.OK };
 
