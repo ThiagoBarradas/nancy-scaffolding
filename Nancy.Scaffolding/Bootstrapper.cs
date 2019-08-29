@@ -34,7 +34,6 @@ namespace Nancy.Scaffolding
             this.EnableCSRF(pipelines);
             this.SetupLogger(pipelines, container);
             this.AddRequestKey(pipelines, container);
-            this.AddAccountId(pipelines, container);
             this.SetupMapper(container);
             Api.ApiBasicConfiguration.Pipelines?.Invoke(pipelines, container);
             SwaggerConfiguration.Register(container.Resolve<JsonSerializerSettings>());
@@ -67,24 +66,13 @@ namespace Nancy.Scaffolding
         {
             base.ConfigureRequestContainer(container, context);
 
-            container.Register(new AccountId());
+            var additionalInfo = new AdditionalInfo();
+            context.Items["NancySerilogAdditionalInfo"] = additionalInfo;
+            container.Register<AdditionalInfo>(additionalInfo);
+
             this.RegisterCurrentCulture(context, container);
 
             Api.ApiBasicConfiguration?.RequestContainer?.Invoke(context, container);
-        }
-
-        protected void AddAccountId(IPipelines pipelines, TinyIoCContainer container)
-        {
-            pipelines.AfterRequest.AddItemToStartOfPipeline((context) =>
-            {
-                context.Items["AccountId"] = container.Resolve<AccountId>().Value;
-            });
-
-            pipelines.OnError.AddItemToStartOfPipeline((context, exception) =>
-            {
-                context.Items["AccountId"] = container.Resolve<AccountId>().Value;
-                return null;
-            });
         }
 
         protected override void ConfigureConventions(NancyConventions conventions)
