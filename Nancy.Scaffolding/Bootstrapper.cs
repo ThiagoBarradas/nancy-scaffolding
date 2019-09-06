@@ -183,6 +183,20 @@ namespace Nancy.Scaffolding
                        .WithHeader("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT,DELETE")
                        .WithHeader("Access-Control-Allow-Headers", "Content-Type, Accept, Authorization");
             });
+
+            pipelines.OnError.AddItemToStartOfPipeline((context, ex) =>
+            {
+                var response = context.Response ?? new Response();
+
+                context.Response
+                      .WithHeader("Access-Control-Allow-Origin", "*")
+                      .WithHeader("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT,DELETE")
+                      .WithHeader("Access-Control-Allow-Headers", "Content-Type, Accept, Authorization");
+
+                context.Response = response;
+
+                return null;
+            });
         }
 
         protected void EnableCSRF(IPipelines pipelines)
