@@ -15,6 +15,8 @@ namespace Nancy.Scaffolding.Models
 
         public SplunkOptions SplunkOptions { get; set; } = new SplunkOptions();
 
+        public NewRelicOptions NewRelicOptions { get; set; } = new NewRelicOptions();
+
         public GoogleCloudLoggingOptions GoogleCloudLoggingOptions { get; set; } 
             = new GoogleCloudLoggingOptions()
             {

@@ -226,6 +226,7 @@ namespace Nancy.Scaffolding
                 .UseSuggestedSetting(Api.ApiSettings?.Domain, Api.ApiSettings?.Application)
                 .SetupSeq(Api.LogSettings?.SeqOptions)
                 .SetupSplunk(Api.LogSettings?.SplunkOptions)
+                .SetupNewRelic(Api.LogSettings?.NewRelicOptions)
                 .SetupGoogleCloudLogging(Api.LogSettings?.GoogleCloudLoggingOptions)
                 .BuildLogger();
 
