@@ -1,3 +1,4 @@
+[![Build Status](https://barradas.visualstudio.com/Contributions/_apis/build/status/NugetPackage/Nancy%20Scaffolding?branchName=master)](https://barradas.visualstudio.com/Contributions/_build/latest?definitionId=10&branchName=master)
 [![NuGet Downloads](https://img.shields.io/nuget/dt/Nancy.Scaffolding.svg)](https://www.nuget.org/packages/Nancy.Scaffolding/)
 [![NuGet Version](https://img.shields.io/nuget/v/Nancy.Scaffolding.svg)](https://www.nuget.org/packages/Nancy.Scaffolding/)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=ThiagoBarradas_nancy-scaffolding&metric=alert_status)](https://sonarcloud.io/dashboard?id=ThiagoBarradas_nancy-scaffolding)
