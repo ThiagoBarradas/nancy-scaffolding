@@ -1,17 +1,24 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27703.2026
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30011.22
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Nancy.Scaffolding", "Nancy.Scaffolding\Nancy.Scaffolding.csproj", "{4B0B727F-2711-4549-9E8A-52B45C596EE7}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Nancy.Scaffolding.ApiDemo", "Nancy.Scaffolding.ApiDemo\Nancy.Scaffolding.ApiDemo.csproj", "{C28FA813-8D94-4263-B904-7EF0B736FF89}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{37D157E0-82D0-43F3-AD25-053E952633A4}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Nancy.Scaffolding.Tests", "Nancy.Scaffolding.Tests\Nancy.Scaffolding.Tests.csproj", "{D432E89C-0F01-43DF-90CC-78E270DF5C14}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "git", "git", "{8025C15C-22C2-4023-A3A4-542AEC1965E3}"
 	ProjectSection(SolutionItems) = preProject
 		.gitattributes = .gitattributes
 		.gitignore = .gitignore
-		appveyor.yml = appveyor.yml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "github", "github", "{8A1EDF5D-9459-4526-B1C6-1D499FD0B90F}"
+	ProjectSection(SolutionItems) = preProject
 		.github\CONTRIBUTING.md = .github\CONTRIBUTING.md
 		.github\ISSUE_TEMPLATE.md = .github\ISSUE_TEMPLATE.md
 		LICENSE = LICENSE
@@ -19,7 +26,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Nancy.Scaffolding.Tests", "Nancy.Scaffolding.Tests\Nancy.Scaffolding.Tests.csproj", "{D432E89C-0F01-43DF-90CC-78E270DF5C14}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "devops", "devops", "{BC7BEADD-FC0D-498A-A638-C45A2200E662}"
+	ProjectSection(SolutionItems) = preProject
+		azure-pipelines.yml = azure-pipelines.yml
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -42,6 +52,11 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{8025C15C-22C2-4023-A3A4-542AEC1965E3} = {37D157E0-82D0-43F3-AD25-053E952633A4}
+		{8A1EDF5D-9459-4526-B1C6-1D499FD0B90F} = {37D157E0-82D0-43F3-AD25-053E952633A4}
+		{BC7BEADD-FC0D-498A-A638-C45A2200E662} = {37D157E0-82D0-43F3-AD25-053E952633A4}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {53851BA2-83E2-42DB-9114-B054727825E6}

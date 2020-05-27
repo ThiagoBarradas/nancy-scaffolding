@@ -28,7 +28,7 @@
     <PackageReference Include="PackUtils" Version="1.0.46" />
     <PackageReference Include="PagedList.NetCore" Version="1.0.6" />
     <PackageReference Include="RestSharp.Serilog.Auto" Version="1.0.31" />
-    <PackageReference Include="Serilog.Builder" Version="1.0.27" />
+    <PackageReference Include="Serilog.Builder" Version="1.1.0" />
     <PackageReference Include="WebApi.Models" Version="1.0.8" />
   </ItemGroup>
 

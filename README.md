@@ -1,8 +1,7 @@
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/37ba381310434bd0af7657bf62e2f5de)](https://www.codacy.com/app/ThiagoBarradas/nancy-scaffolding?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=ThiagoBarradas/nancy-scaffolding&amp;utm_campaign=Badge_Grade)
-[![Build status](https://ci.appveyor.com/api/projects/status/q997fiwtuv17tvtx/branch/master?svg=true)](https://ci.appveyor.com/project/ThiagoBarradas/nancy-scaffolding/branch/master)
-[![codecov](https://codecov.io/gh/ThiagoBarradas/nancy-scaffolding/branch/master/graph/badge.svg)](https://codecov.io/gh/ThiagoBarradas/nancy-scaffolding)
 [![NuGet Downloads](https://img.shields.io/nuget/dt/Nancy.Scaffolding.svg)](https://www.nuget.org/packages/Nancy.Scaffolding/)
 [![NuGet Version](https://img.shields.io/nuget/v/Nancy.Scaffolding.svg)](https://www.nuget.org/packages/Nancy.Scaffolding/)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=ThiagoBarradas_nancy-scaffolding&metric=alert_status)](https://sonarcloud.io/dashboard?id=ThiagoBarradas_nancy-scaffolding)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=ThiagoBarradas_nancy-scaffolding&metric=coverage)](https://sonarcloud.io/dashboard?id=ThiagoBarradas_nancy-scaffolding)
 
 # Nancy.Scaffolding
 
