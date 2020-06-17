@@ -253,7 +253,11 @@ namespace Nancy.Scaffolding
                 .SetupNewRelic(Api.LogSettings?.NewRelicOptions)
                 .BuildLogger();
 
+            
+
             var logger = container.Resolve<ICommunicationLogger>();
+
+            logger.NancySerilogConfiguration.Version = Api.ApiSettings?.BuildVersion;
 
             logger.NancySerilogConfiguration.InformationTitle =
                 Api.LogSettings?.TitlePrefix + CommunicationLogger.DefaultInformationTitle;
