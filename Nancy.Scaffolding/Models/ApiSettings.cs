@@ -21,6 +21,8 @@ namespace Nancy.Scaffolding.Models
 
         public string Version { get; set; }
 
+        public string BuildVersion { get; set; }
+
         public JsonSerializerEnum JsonSerializer { get; set; }
 
         public string[] SupportedCultures { get; set; } 
