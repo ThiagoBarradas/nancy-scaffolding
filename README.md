@@ -24,12 +24,20 @@ class Program
             RequestContainer = RegisterRequestContainer,
             Pipelines = ConfigurePipelines,
             Mapper = ConfigureMapper,
+            ConfigureHealthcheck = ConfigureHealthcheck,
             ApiName = "My App",
             ApiPort = 5855,
             EnvironmentVariablesPrefix = "Prefix_"
         };
 
         Api.Run(config);
+    }
+
+    public static List<IHealthcheck> ConfigureHealthcheck(TinyIoCContainer container)
+    {
+        var hcs = new List<IHealthcheck>();
+
+        return hcs;
     }
 
     public static TinyIoCContainer RegisterApplicationContainer(TinyIoCContainer container)
@@ -67,12 +75,18 @@ App Settings
     "Domain": "MyDomain",
     "Application": "MyApp",
     "Version": "v1",
+    "BuildVersion": "1.0.0",
     "SupportedCultures": [ "pt-BR", "es-ES", "en-US" ],
     "DebugMode": true
   },
   "DbSettings": {
     "ConnectionString": "mongodb://user:pass@localhost:27017/DatabaseName",
     "Name": "DatabaseName"
+  },
+  "HealthcheckSettings": {
+    "Enabled": true,
+    "Path": "healthcheck/123456",
+    "LogEnabled": true
   },
   "LogSettings": {
     "TitlePrefix": "[{Application}] ",
@@ -94,6 +108,11 @@ App Settings
       "Company": "MyApp",
       "ProductVersion": "1.0.0",
       "SourceType": "_json"
+    },
+    "NewRelicOptions" : {
+      "Enabled" : true,
+      "AppName" : "MyApp",
+      "LicenseKey" : "xxxxx"
     }
   },
   "DocsSettings": {

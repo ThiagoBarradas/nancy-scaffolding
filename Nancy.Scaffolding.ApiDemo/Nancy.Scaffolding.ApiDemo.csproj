@@ -6,11 +6,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Mongo.CRUD" Version="1.0.13" />
+    <PackageReference Include="Mongo.CRUD" Version="1.0.27" />
     <PackageReference Include="Nancy" Version="2.0.0-clinteastwood" />
     <PackageReference Include="Nancy.Validation.FluentValidation" Version="2.0.0-clinteastwood" />
-    <PackageReference Include="RestSharp.Serilog.Auto" Version="1.0.31" />
-    <PackageReference Include="Serilog.Builder" Version="1.1.0" />
+    <PackageReference Include="RestSharp.Serilog.Auto" Version="1.1.1" />
+    <PackageReference Include="Serilog.Builder" Version="1.1.1" />
   </ItemGroup>
 
   <ItemGroup>
@@ -34,9 +34,6 @@
 
   <ItemGroup>
     <None Update="appsettings.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="appsettings.Development.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
