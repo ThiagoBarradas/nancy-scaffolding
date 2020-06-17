@@ -17,6 +17,8 @@ namespace Nancy.Scaffolding
 
         public static DocsSettings DocsSettings { get; set; } = new DocsSettings();
 
+        public static HealthcheckSettings HealthcheckSettings { get; set; } = new HealthcheckSettings();
+
         public static ApiBasicConfiguration ApiBasicConfiguration { get; set; } = new ApiBasicConfiguration();
 
         public static IConfigurationRoot ConfigurationRoot { get; set; }
@@ -32,6 +34,7 @@ namespace Nancy.Scaffolding
             Api.ConfigurationRoot.GetSection("LogSettings").Bind(Api.LogSettings);
             Api.ConfigurationRoot.GetSection("DbSettings").Bind(Api.DbSettings);
             Api.ConfigurationRoot.GetSection("DocsSettings").Bind(Api.DocsSettings);
+            Api.ConfigurationRoot.GetSection("HealthcheckSettings").Bind(Api.HealthcheckSettings);
         }
 
         public static void Run(ApiBasicConfiguration apiBasicConfiguration)

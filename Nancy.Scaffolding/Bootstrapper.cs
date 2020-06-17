@@ -35,6 +35,7 @@ namespace Nancy.Scaffolding
             this.SetupLogger(pipelines, container);
             this.AddRequestKey(pipelines, container);
             this.SetupMapper(container);
+            this.InsertControllerAndMethodName(pipelines);
             Api.ApiBasicConfiguration.Pipelines?.Invoke(pipelines, container);
             SwaggerConfiguration.Register(container.Resolve<JsonSerializerSettings>());
             Api.ApiBasicConfiguration.ApplicationStartup?.Invoke(pipelines, container);
@@ -50,7 +51,8 @@ namespace Nancy.Scaffolding
             container.Register(Api.LogSettings);
             container.Register(Api.DbSettings);
             container.Register(Api.DocsSettings);
-            
+            container.Register(Api.HealthcheckSettings);
+
             container.Register<ICommunicationLogger, CommunicationLogger>();
             container.Register<IStatusCodeHandler, StatusCodeHandler>().AsSingleton();
             container.Register<IConfigurationRoot>(Api.ConfigurationRoot);
@@ -174,6 +176,23 @@ namespace Nancy.Scaffolding
             context.Culture = culture;
         }
 
+        protected void InsertControllerAndMethodName(IPipelines pipelines)
+        {
+            pipelines.AfterRequest.AddItemToStartOfPipeline((context) =>
+            {
+                context.Items["Controller"] = context.NegotiationContext.ModuleName?.Replace("Controller","").Replace("Module","");
+                context.Items["Action"] = context.ResolvedRoute.Description.Name;
+            });
+
+            pipelines.OnError.AddItemToStartOfPipeline((context, ex) =>
+            {
+                context.Items["Controller"] = context.NegotiationContext.ModuleName?.Replace("Controller", "").Replace("Module", ""); ;
+                context.Items["Action"] = context.ResolvedRoute.Description.Name;
+
+                return null;
+            });
+        }
+
         protected void EnableCors(IPipelines pipelines)
         {
             pipelines.AfterRequest.AddItemToStartOfPipeline((context) =>
@@ -222,12 +241,16 @@ namespace Nancy.Scaffolding
         {
             var loggerBuilder = new LoggerBuilder();
 
+            if (Api.LogSettings?.NewRelicOptions?.Enabled == true && string.IsNullOrWhiteSpace(Api.LogSettings?.NewRelicOptions?.LicenseKey))
+            {
+                Api.LogSettings.NewRelicOptions.LicenseKey = Environment.GetEnvironmentVariable("NEW_RELIC_LICENSE_KEY");
+            }
+
             Log.Logger = loggerBuilder
                 .UseSuggestedSetting(Api.ApiSettings?.Domain, Api.ApiSettings?.Application)
                 .SetupSeq(Api.LogSettings?.SeqOptions)
                 .SetupSplunk(Api.LogSettings?.SplunkOptions)
                 .SetupNewRelic(Api.LogSettings?.NewRelicOptions)
-                .SetupGoogleCloudLogging(Api.LogSettings?.GoogleCloudLoggingOptions)
                 .BuildLogger();
 
             var logger = container.Resolve<ICommunicationLogger>();

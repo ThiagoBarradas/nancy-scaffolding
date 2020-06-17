@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
 using Nancy.Bootstrapper;
+using Nancy.Scaffolding.Healthcheck;
 using Nancy.Scaffolding.Models;
 using Nancy.TinyIoc;
+using System.Collections.Generic;
 
 namespace Nancy.Scaffolding.ApiDemo
 {
@@ -15,12 +17,20 @@ namespace Nancy.Scaffolding.ApiDemo
                 RequestContainer = RegisterRequestContainer,
                 Pipelines = ConfigurePipelines,
                 Mapper = ConfigureMapper,
+                ConfigureHealthcheck = ConfigureHealthcheck,
                 ApiName = "My Apppp",
                 ApiPort = 5855,
                 EnvironmentVariablesPrefix = "Prefix_"
             };
 
             Api.Run(config);
+        }
+
+        public static List<IHealthcheck> ConfigureHealthcheck(TinyIoCContainer container)
+        {
+            var hcs = new List<IHealthcheck>();
+
+            return hcs;
         }
 
         public static TinyIoCContainer RegisterApplicationContainer(TinyIoCContainer container)
