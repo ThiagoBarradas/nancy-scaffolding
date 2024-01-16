@@ -31,7 +31,7 @@
     <PackageReference Include="PagedList.NetCore" Version="1.0.6" />
     <PackageReference Include="RestSharp.Serilog.Auto" Version="1.1.1" />
     <PackageReference Include="Serilog.Builder" Version="1.1.1" />
-    <PackageReference Include="System.Data.SqlClient" Version="4.8.1" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.6" />
     <PackageReference Include="WebApi.Models" Version="1.0.8" />
   </ItemGroup>
 
