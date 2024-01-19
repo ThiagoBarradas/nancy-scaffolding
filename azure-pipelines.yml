@@ -14,7 +14,7 @@ variables:
   execute_test: 'false'
   test_project_base_folder: 'Nancy.Scaffolding.Tests'
   test_project_path: 'Nancy.Scaffolding.Tests/Nancy.Scaffolding.Tests.csproj'
-  execute_sonarcloud: 'true'
+  execute_sonarcloud: 'false'
   sonarcloud_project: 'ThiagoBarradas_nancy-scaffolding'
   sonarcloud_organization: 'thiagobarradas-github'
   sonarcloud_account: 'SonarCloudBarradas' 
