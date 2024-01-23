@@ -7,7 +7,7 @@ namespace Nancy.Scaffolding.Models
         public string TitlePrefix { get; set; }
 
         public string[] JsonBlacklist { get; set; }
-        
+
         public bool DebugEnabled { get; set; }
 
         public SeqOptions SeqOptions { get; set; } = new SeqOptions();
@@ -15,5 +15,7 @@ namespace Nancy.Scaffolding.Models
         public SplunkOptions SplunkOptions { get; set; } = new SplunkOptions();
 
         public NewRelicOptions NewRelicOptions { get; set; } = new NewRelicOptions();
+
+        public ConsoleOptions ConsoleOptions { get; set; } = new ConsoleOptions();
     }
 }
