@@ -48,12 +48,7 @@ stages:
       condition: eq(variables['Build.SourceBranchName'], 'master')
       inputs:
         runtime: 'core'
-        updateAssemblyInfo: false
-#    - task: gittools.gitversion.gitversion-task.GitVersion@5
-#      condition: eq(variables['Build.SourceBranchName'], 'master')
-#      displayName: 'Get version from git tag for master'
-#      inputs:
-#        updateAssemblyInfo: false
+        updateAssemblyInfo: false     
     - bash: |
         if [[ "$(Build.SourceBranch)" =~ "/hotfix/" ]] ||
            [[ "$(Build.SourceBranch)" =~ "/release/" ]]; 
