@@ -1,7 +1,7 @@
 # - requires:
 # https://marketplace.visualstudio.com/items?itemName=SonarSource.sonarcloud
 # https://marketplace.visualstudio.com/items?itemName=SimondeLang.sonarcloud-buildbreaker
-# https://marketplace.visualstudio.com/items?itemName=gittools.gitversion
+# https://marketplace.visualstudio.com/items?itemName=gittools.gittools
 # 
 # - CI/CD for git flow
 # - for linux environment
@@ -43,12 +43,17 @@ stages:
     - task: UseDotNet@2
       inputs:
         packageType: 'sdk'
-        version: '2.1.x'
-    - task: gittools.gitversion.gitversion-task.GitVersion@5
+        version: '2.1.x'  
+    - task: GitVersion@5
       condition: eq(variables['Build.SourceBranchName'], 'master')
-      displayName: 'Get version from git tag for master'
       inputs:
+        runtime: 'core'
         updateAssemblyInfo: false
+#    - task: gittools.gitversion.gitversion-task.GitVersion@5
+#      condition: eq(variables['Build.SourceBranchName'], 'master')
+#      displayName: 'Get version from git tag for master'
+#      inputs:
+#        updateAssemblyInfo: false
     - bash: |
         if [[ "$(Build.SourceBranch)" =~ "/hotfix/" ]] ||
            [[ "$(Build.SourceBranch)" =~ "/release/" ]]; 
