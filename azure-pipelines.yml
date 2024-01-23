@@ -40,6 +40,10 @@ stages:
     variables: 
       current_counter: $[counter(variables['Build.SourceBranchName'], 1)]    
     steps:
+    - task: UseDotNet@2
+      inputs:
+        packageType: 'sdk'
+        version: '2.1.x'
     - task: gittools.gitversion.gitversion-task.GitVersion@5
       condition: eq(variables['Build.SourceBranchName'], 'master')
       displayName: 'Get version from git tag for master'
