@@ -29,7 +29,7 @@ pr:
 - develop
 
 pool:
-  vmImage: 'ubuntu-latest'
+  vmImage: 'ubuntu-20.04'
 
 stages:
 - stage: BuildApp
@@ -44,10 +44,16 @@ stages:
       inputs:
         packageType: 'sdk'
         version: '2.1.x'  
-    - task: GitVersion@5
+    - task: gitversion/setup@0
       condition: eq(variables['Build.SourceBranchName'], 'master')
+      displayName: Install GitVersion
       inputs:
-        runtime: 'core'
+        versionSpec: '5.x'
+    - task: gitversion/execute@0
+      condition: eq(variables['Build.SourceBranchName'], 'master')
+      displayName: Execute GitVersion
+      inputs:
+        useConfigFile: true
         updateAssemblyInfo: false     
     - bash: |
         if [[ "$(Build.SourceBranch)" =~ "/hotfix/" ]] ||
