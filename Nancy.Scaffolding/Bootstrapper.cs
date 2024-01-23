@@ -5,6 +5,7 @@ using Nancy.Conventions;
 using Nancy.ErrorHandling;
 using Nancy.Scaffolding.Docs;
 using Nancy.Scaffolding.Enums;
+using Nancy.Scaffolding.Extensions;
 using Nancy.Scaffolding.Handlers;
 using Nancy.Scaffolding.Mappers;
 using Nancy.Scaffolding.Models;
@@ -180,7 +181,7 @@ namespace Nancy.Scaffolding
         {
             pipelines.AfterRequest.AddItemToStartOfPipeline((context) =>
             {
-                context.Items["Controller"] = context.NegotiationContext.ModuleName?.Replace("Controller","").Replace("Module","");
+                context.Items["Controller"] = context.NegotiationContext.ModuleName?.Replace("Controller", "").Replace("Module", "");
                 context.Items["Action"] = context.ResolvedRoute.Description.Name;
             });
 
@@ -251,9 +252,11 @@ namespace Nancy.Scaffolding
                 .SetupSeq(Api.LogSettings?.SeqOptions)
                 .SetupSplunk(Api.LogSettings?.SplunkOptions)
                 .SetupNewRelic(Api.LogSettings?.NewRelicOptions)
-                .BuildLogger();
-
-            
+                .DisableConsoleIfConsoleSinkIsEnabled(Api.LogSettings?.ConsoleOptions)
+                .EnableConsole()
+                .BuildConfiguration()
+                .EnableStdOutput(Api.LogSettings?.ConsoleOptions)
+                .CreateLogger();
 
             var logger = container.Resolve<ICommunicationLogger>();
 
